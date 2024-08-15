@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "statusCode": 200,
+  "data": {
+    "fields": [
+      { "key": "birthdate", "label": "Birthdate", "type": "date", "required": true },
+      { "key": "birthplace", "label": "Birthplace", "type": "text", "required": true },
+      { "key": "sex", "label": "Sex", "type": "select", "options": ["Male", "Female", "Other"], "required": true },
+      { "key": "currentAddress", "label": "Current Address", "type": "text", "required": true }
+    ]
+  }
+}

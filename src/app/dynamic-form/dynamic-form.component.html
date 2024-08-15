@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div *ngFor="let field of formFields">
+    <label [attr.for]="field.key">{{ field.label }}</label>
+    <div [ngSwitch]="field.type">
+      <input
+        *ngSwitchCase="'text'"
+        [formControlName]="field.key"
+        [attr.type]="field.type"
+        [ngClass]="{
+          'invalid-input': formGroup.get(field.key)?.invalid && (formGroup.get(field.key)?.touched || formGroup.get(field.key)?.dirty)
+        }"
+      />
+      <input
+        *ngSwitchCase="'date'"
+        [formControlName]="field.key"
+        [attr.type]="field.type"
+        [ngClass]="{
+          'invalid-input': formGroup.get(field.key)?.invalid && (formGroup.get(field.key)?.touched || formGroup.get(field.key)?.dirty)
+        }"
+      />
+      <select
+        *ngSwitchCase="'select'"
+        [formControlName]="field.key"
+        [ngClass]="{
+          'invalid-input': formGroup.get(field.key)?.invalid && (formGroup.get(field.key)?.touched || formGroup.get(field.key)?.dirty)
+        }"
+      >
+        <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <div *ngIf="errorMessage[field.key]">
+      <div class="error-message">{{ errorMessage[field.key] }}</div>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+</form>
